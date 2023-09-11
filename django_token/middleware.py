@@ -27,7 +27,7 @@ class TokenMiddleware(object):
     def process_request(self, request):
         self.get_response = get_response
 
-        auth_header = str(request.META.get('HTTP_AUTHORIZATION', '')).partition(' ')
+        auth_header = str(request.META.get('Authorization', '')).partition(' ')
 
         if auth_header[0].lower() != 'token':
             return None
