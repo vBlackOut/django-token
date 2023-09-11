@@ -37,5 +37,9 @@ class TokenMiddleware(object):
             return http.HttpResponseBadRequest("Improperly formatted token")
 
         user = auth.authenticate(token=auth_header[2])
+        print(f"token: {user}")
+        userName = authenticate(request, username=user)
+        login(request, userName)
+        
         if user:
             request.user = user
