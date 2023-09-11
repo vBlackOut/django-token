@@ -14,8 +14,6 @@ class TokenMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        self.get_response = get_response
-
         if not self.get_response:
             return exceptions.ImproperlyConfigured(
                 'Middleware called without proper initialization')
@@ -25,8 +23,6 @@ class TokenMiddleware(object):
         return self.get_response(request)
 
     def process_request(self, request):
-        self.get_response = get_response
-
         auth_header = str(request.META.get('Authorization', '')).partition(' ')
 
         if auth_header[0].lower() != 'token':
