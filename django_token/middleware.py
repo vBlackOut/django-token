@@ -10,16 +10,11 @@ class TokenMiddleware(object):
     """
     get_response = None
 
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        if not self.get_response:
-            return exceptions.ImproperlyConfigured(
-                'Middleware called without proper initialization')
-
         self.process_request(request)
-
         return self.get_response(request)
 
     def process_request(self, request):
