@@ -12,12 +12,20 @@ Install from pip
 sudo pip install django_token
 ```
 
+Add inside APP 
+```python
+    django_token
+```
+
 Add the middleware to your MIDDLEWARE_CLASSES
 
 ```python
-MIDDLEWARE_CLASSES = (
-    # Other middleware
-    'django_token.middleware.TokenMiddleware',
+MIDDLEWARE = (
+    ....
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django_token.middleware.TokenMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    ....
  )
 ```
 
